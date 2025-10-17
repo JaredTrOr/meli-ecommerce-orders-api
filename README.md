@@ -238,3 +238,6 @@ GET
 
 DELETE
 <img width="1506" height="628" alt="Image" src="https://github.com/user-attachments/assets/268e8f22-a331-4918-81fa-8bb31c3a3572" />
+
+POSTMAN JSON in
+https://github.com/JaredTrOr/meli-ecommerce-orders-api/blob/master/MeliECommerce.postman_collection.json
