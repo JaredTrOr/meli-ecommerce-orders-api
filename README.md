@@ -230,8 +230,8 @@ Returns a full JSON object of the order (same as above).
 
 ## Postman documentation
 
-GET
+POST
 <img width="1547" height="957" alt="Image" src="https://github.com/user-attachments/assets/55623dfd-fd88-4feb-8217-942f1dc58fe8" />
 
-POST 
+GET 
 <img width="1538" height="927" alt="Image" src="https://github.com/user-attachments/assets/dfe7614c-6253-4322-955e-eee3054fa6dd" />
