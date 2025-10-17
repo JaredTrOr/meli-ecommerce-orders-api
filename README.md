@@ -235,3 +235,6 @@ POST
 
 GET 
 <img width="1538" height="927" alt="Image" src="https://github.com/user-attachments/assets/dfe7614c-6253-4322-955e-eee3054fa6dd" />
+
+DELETE
+<img width="1506" height="628" alt="Image" src="https://github.com/user-attachments/assets/268e8f22-a331-4918-81fa-8bb31c3a3572" />
