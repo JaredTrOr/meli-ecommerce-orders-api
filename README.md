@@ -1,6 +1,6 @@
 # 🛍️ MELI Order Management Service
 
-**Author:** Jared Alexander Trujillo Ortiz  
+Jared Alexander Trujillo Ortiz  
 **Date:** October 16, 2025  
 
 A robust and scalable microservice for managing e-commerce orders, built with **Java** and **Spring Boot** as a solution to critical issues faced by MELI.
