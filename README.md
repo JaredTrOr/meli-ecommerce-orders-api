@@ -7,7 +7,7 @@ A robust and scalable microservice for managing e-commerce orders, built with **
 
 ---
 
-## 🧩 1. Project Context: The MELI Challenge
+## 🧩 Project Context: The MELI Challenge
 
 This project was developed to address significant technical failures in MELI's original order management system. The previous system suffered from operational issues caused by environment misconfigurations and database instability, resulting in substantial business losses and customer complaints.
 
@@ -22,7 +22,7 @@ Together, these establish a solid foundation for MELI's future e-commerce operat
 
 ---
 
-## 🚀 2. Key Features
+## 🚀 Key Features
 
 - **Full CRUD Functionality:** Create, Read, Update (via save), and Delete operations for orders.  
 - **Multi-Item Orders:** Models real-world carts with multiple products (line items).  
@@ -35,7 +35,7 @@ Together, these establish a solid foundation for MELI's future e-commerce operat
 
 ---
 
-## ⚙️ 3. Tech Stack
+## ⚙️ Tech Stack
 
 | Component | Technology |
 |------------|-------------|
@@ -48,7 +48,7 @@ Together, these establish a solid foundation for MELI's future e-commerce operat
 
 ---
 
-## 🧭 4. Getting Started
+## 🧭 Getting Started
 
 ### ✅ Prerequisites
 
@@ -84,7 +84,7 @@ Located in `src/main/resources/`:
 
 ---
 
-## ▶️ 5. Running the Application
+## ▶️ Running the Application
 
 ### Option 1: Startup Script (Linux/macOS)
 ```bash
@@ -123,7 +123,7 @@ java -jar target/order-service-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
 
 ---
 
-## 📚 6. Using the API
+## 📚 Using the API
 
 ### Swagger UI
 Visit: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
@@ -139,7 +139,7 @@ Import `postman_collection.json` (included in project root).
 
 ---
 
-## 🌐 7. API Endpoints
+## 🌐 API Endpoints
 
 **Base Path:** `/api/v1`
 
