@@ -101,6 +101,79 @@ App starts at: [http://localhost:8080](http://localhost:8080)
 
 ---
 
+## Application Profiles
+
+This project uses Spring Boot Profiles to manage distinct configurations for different environments. This allows us to use an in-memory database for fast development and testing, while using a secure cloud database for production.
+
+The configuration for each profile is located in `src/main/resources/`:
+
+* `application.properties`: The base configuration, which sets `dev` as the default.
+* `application-dev.properties`: For local development.
+* `application-test.properties`: For running automated tests.
+* `application-prod.properties`: For the live production deployment.
+
+---
+
+### 1. Development (`dev`)
+
+This is the **default profile** for working on the application locally.
+
+* **File:** `application-dev.properties`
+* **Purpose:** Used for day-to-day coding and manual testing on your machine.
+* **Database:** Connects to an **in-memory H2 database** (`jdbc:h2:mem:melidb`).
+* **Activation:** This profile is active by default. You don't need to do anything. Just run the application in your IDE.
+* **Features:**
+    * The database is reset every time you restart the application.
+    * The H2 Console is enabled at `http://localhost:8080/h2-console` for you to view and query the database directly.
+    * Uses `spring.jpa.hibernate.ddl-auto=update` to automatically create/update tables based on your `@Entity` classes.
+
+### 2. Testing (`test`)
+
+This profile is used *only* when running automated tests (like JUnit tests).
+
+* **File:** `application-test.properties`
+* **Purpose:** To run the automated test suite in a clean, isolated environment.
+* **Database:** Uses a separate, in-memory **H2 database** (`jdbc:h2:mem:testdb`).
+* **Activation:** This profile is **automatically activated** by Spring Boot whenever you run your tests (e.g., `mvn test` or clicking "Run Tests" in your IDE).
+* **Configuration:**
+    * Uses a different database name to avoid all conflicts with your `dev` database.
+    * Uses `spring.jpa.hibernate.ddl-auto=create-drop`, which builds the database from scratch when tests start and completely deletes it when they finish. This ensures every test run is clean and repeatable.
+
+### 3. Production (`prod`)
+
+This is the profile for the **live, public-facing application**.
+
+* **File:** `application-prod.properties`
+* **Purpose:** For the deployed application that real users will interact with.
+* **Database:** Connects to the main **Supabase (PostgreSQL)** production database.
+* **Activation:** This profile **must be explicitly set** on the server.
+* **Configuration:** This file contains **no secrets**. All sensitive values (database URL, username, password) are loaded from environment variables (e.g., `${PROD_DB_URL}`).
+
+---
+
+## How to Activate a Profile
+
+### On a Local Machine (IDE)
+
+The `dev` profile is active by default.
+
+If you ever need to *test* the production configuration locally, you can force the `prod` profile in your IDE:
+1.  Go to **Run > Edit Configurations...**
+2.  Add a new Environment Variable:
+    * **Name:** `SPRING_PROFILES_ACTIVE`
+    * **Value:** `prod`
+3.  You must also add **all** the production variables (`PROD_DB_URL`, `PROD_DB_USER`, `PROD_DB_PASSWORD`) in the same place.
+
+### On the Server (Production)
+
+The included `start.sh` script handles this for you.
+
+When you run `./start.sh`, it automatically does two things:
+1.  Runs `export SPRING_PROFILES_ACTIVE=prod`.
+2.  Reads your `.env` file to securely load all your production database credentials.
+
+---
+
 ### Running with Production Profile
 
 #### 1. Package the Application
