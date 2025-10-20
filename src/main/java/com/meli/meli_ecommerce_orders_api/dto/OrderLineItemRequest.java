@@ -13,13 +13,60 @@ public class OrderLineItemRequest {
     private int quantity;
     private BigDecimal pricePerUnit;
 
-    // Getters and Setters for all fields are required for JSON deserialization
+    /**
+     * Gets product id.
+     *
+     * @return the product id
+     */
+// Getters and Setters for all fields are required for JSON deserialization
     public UUID getProductId() { return productId; }
+
+    /**
+     * Sets product id.
+     *
+     * @param productId the product id
+     */
     public void setProductId(UUID productId) { this.productId = productId; }
+
+    /**
+     * Gets product name.
+     *
+     * @return the product name
+     */
     public String getProductName() { return productName; }
+
+    /**
+     * Sets product name.
+     *
+     * @param productName the product name
+     */
     public void setProductName(String productName) { this.productName = productName; }
+
+    /**
+     * Gets quantity.
+     *
+     * @return the quantity
+     */
     public int getQuantity() { return quantity; }
+
+    /**
+     * Sets quantity.
+     *
+     * @param quantity the quantity
+     */
     public void setQuantity(int quantity) { this.quantity = quantity; }
+
+    /**
+     * Gets price per unit.
+     *
+     * @return the price per unit
+     */
     public BigDecimal getPricePerUnit() { return pricePerUnit; }
+
+    /**
+     * Sets price per unit.
+     *
+     * @param pricePerUnit the price per unit
+     */
     public void setPricePerUnit(BigDecimal pricePerUnit) { this.pricePerUnit = pricePerUnit; }
 }

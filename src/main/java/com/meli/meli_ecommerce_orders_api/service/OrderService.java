@@ -20,11 +20,23 @@ import java.util.UUID;
 public class OrderService {
 
     private final OrderRepository orderRepository;
+
+    /**
+     * Instantiates a new Order service.
+     *
+     * @param orderRepository the order repository
+     */
     @Autowired
     public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
 
+    /**
+     * Create order order.
+     *
+     * @param request the request
+     * @return the order
+     */
     @Transactional
     public Order createOrder(CreateOrderRequest request) {
         Order newOrder = new Order();
@@ -48,16 +60,33 @@ public class OrderService {
         return orderRepository.save(newOrder);
     }
 
+    /**
+     * Gets all active orders.
+     *
+     * @return the all active orders
+     */
     public List<Order> getAllActiveOrders() {
         return orderRepository.findByDeletedAtIsNull();
     }
 
+    /**
+     * Gets order by id.
+     *
+     * @param id the id
+     * @return the order by id
+     */
     public Order getOrderById(UUID id) {
         return orderRepository.findById(id)
                 .filter(order -> order.getDeletedAt() == null)
                 .orElseThrow(() -> new EntityNotFoundException("Order not found with id: " + id));
     }
 
+    /**
+     * Soft delete order order.
+     *
+     * @param id the id
+     * @return the order
+     */
     @Transactional
     public Order softDeleteOrder(UUID id) {
         Order orderToDelete = getOrderById(id);
