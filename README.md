@@ -312,5 +312,21 @@ GET
 DELETE
 <img width="1506" height="628" alt="Image" src="https://github.com/user-attachments/assets/268e8f22-a331-4918-81fa-8bb31c3a3572" />
 
+## Swagger documentation
+
+GET
+<img width="1429" height="796" alt="Image" src="https://github.com/user-attachments/assets/2de0b08d-87fb-4c50-b8ee-5422109358cc" />
+
+POST
+<img width="1134" height="826" alt="Image" src="https://github.com/user-attachments/assets/44e6b3ab-22c6-44fb-8096-f85b675a9589" />
+
+GET BY ID
+<img width="1278" height="779" alt="Image" src="https://github.com/user-attachments/assets/ef619b3d-c51d-4ed4-b179-8eb2375ecf6b" />
+
+DELETE
+<img width="1421" height="451" alt="image" src="https://github.com/user-attachments/assets/edf043a5-44ad-4372-be16-a0a56546233e" />
+
+---
+
 POSTMAN JSON in
 https://github.com/JaredTrOr/meli-ecommerce-orders-api/blob/master/MeliECommerce.postman_collection.json
