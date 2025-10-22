@@ -327,6 +327,12 @@ DELETE
 <img width="1421" height="451" alt="image" src="https://github.com/user-attachments/assets/edf043a5-44ad-4372-be16-a0a56546233e" />
 
 ---
+## ✅ Tests
+<img width="1853" height="466" alt="image" src="https://github.com/user-attachments/assets/16a306b5-240e-4a46-9668-3eed4caa9e02" />
+
+
+
+---
 
 POSTMAN JSON in
 https://github.com/JaredTrOr/meli-ecommerce-orders-api/blob/master/MeliECommerce.postman_collection.json
