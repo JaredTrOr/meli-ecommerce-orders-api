@@ -3,6 +3,7 @@ package com.meli.meli_ecommerce_orders_api.controller;
 import com.meli.meli_ecommerce_orders_api.dto.CreateOrderRequest;
 import com.meli.meli_ecommerce_orders_api.model.Order;
 import com.meli.meli_ecommerce_orders_api.service.OrderService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +37,7 @@ public class OrderController {
      * @return the response entity
      */
     @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody CreateOrderRequest request) {
+    public ResponseEntity<Order> createOrder(@Valid @RequestBody CreateOrderRequest request) {
         Order createdOrder = orderService.createOrder(request);
         return new ResponseEntity<>(createdOrder, HttpStatus.CREATED);
     }
