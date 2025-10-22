@@ -7,7 +7,7 @@ A robust and scalable microservice for managing e-commerce orders, built with **
 
 ---
 
-## 🧩 1. Project Context: The MELI Challenge
+## 🧩 Project Context: The MELI Challenge
 
 This project was developed to address significant technical failures in MELI's original order management system. The previous system suffered from operational issues caused by environment misconfigurations and database instability, resulting in substantial business losses and customer complaints.
 
@@ -22,7 +22,7 @@ Together, these establish a solid foundation for MELI's future e-commerce operat
 
 ---
 
-## 🚀 2. Key Features
+## 🚀 Key Features
 
 - **Full CRUD Functionality:** Create, Read, Update (via save), and Delete operations for orders.  
 - **Multi-Item Orders:** Models real-world carts with multiple products (line items).  
@@ -35,7 +35,7 @@ Together, these establish a solid foundation for MELI's future e-commerce operat
 
 ---
 
-## ⚙️ 3. Tech Stack
+## ⚙️ Tech Stack
 
 | Component | Technology |
 |------------|-------------|
@@ -48,7 +48,7 @@ Together, these establish a solid foundation for MELI's future e-commerce operat
 
 ---
 
-## 🧭 4. Getting Started
+## 🧭 Getting Started
 
 ### ✅ Prerequisites
 
@@ -84,7 +84,7 @@ Located in `src/main/resources/`:
 
 ---
 
-## ▶️ 5. Running the Application
+## ▶️ Running the Application
 
 ### Option 1: Startup Script (Linux/macOS)
 ```bash
@@ -98,6 +98,79 @@ mvn spring-boot:run
 ```
 
 App starts at: [http://localhost:8080](http://localhost:8080)
+
+---
+
+## Application Profiles
+
+This project uses Spring Boot Profiles to manage distinct configurations for different environments. This allows us to use an in-memory database for fast development and testing, while using a secure cloud database for production.
+
+The configuration for each profile is located in `src/main/resources/`:
+
+* `application.properties`: The base configuration, which sets `dev` as the default.
+* `application-dev.properties`: For local development.
+* `application-test.properties`: For running automated tests.
+* `application-prod.properties`: For the live production deployment.
+
+---
+
+### 1. Development (`dev`)
+
+This is the **default profile** for working on the application locally.
+
+* **File:** `application-dev.properties`
+* **Purpose:** Used for day-to-day coding and manual testing on your machine.
+* **Database:** Connects to an **in-memory H2 database** (`jdbc:h2:mem:melidb`).
+* **Activation:** This profile is active by default. You don't need to do anything. Just run the application in your IDE.
+* **Features:**
+    * The database is reset every time you restart the application.
+    * The H2 Console is enabled at `http://localhost:8080/h2-console` for you to view and query the database directly.
+    * Uses `spring.jpa.hibernate.ddl-auto=update` to automatically create/update tables based on your `@Entity` classes.
+
+### 2. Testing (`test`)
+
+This profile is used *only* when running automated tests (like JUnit tests).
+
+* **File:** `application-test.properties`
+* **Purpose:** To run the automated test suite in a clean, isolated environment.
+* **Database:** Uses a separate, in-memory **H2 database** (`jdbc:h2:mem:testdb`).
+* **Activation:** This profile is **automatically activated** by Spring Boot whenever you run your tests (e.g., `mvn test` or clicking "Run Tests" in your IDE).
+* **Configuration:**
+    * Uses a different database name to avoid all conflicts with your `dev` database.
+    * Uses `spring.jpa.hibernate.ddl-auto=create-drop`, which builds the database from scratch when tests start and completely deletes it when they finish. This ensures every test run is clean and repeatable.
+
+### 3. Production (`prod`)
+
+This is the profile for the **live, public-facing application**.
+
+* **File:** `application-prod.properties`
+* **Purpose:** For the deployed application that real users will interact with.
+* **Database:** Connects to the main **Supabase (PostgreSQL)** production database.
+* **Activation:** This profile **must be explicitly set** on the server.
+* **Configuration:** This file contains **no secrets**. All sensitive values (database URL, username, password) are loaded from environment variables (e.g., `${PROD_DB_URL}`).
+
+---
+
+## How to Activate a Profile
+
+### On a Local Machine (IDE)
+
+The `dev` profile is active by default.
+
+If you ever need to *test* the production configuration locally, you can force the `prod` profile in your IDE:
+1.  Go to **Run > Edit Configurations...**
+2.  Add a new Environment Variable:
+    * **Name:** `SPRING_PROFILES_ACTIVE`
+    * **Value:** `prod`
+3.  You must also add **all** the production variables (`PROD_DB_URL`, `PROD_DB_USER`, `PROD_DB_PASSWORD`) in the same place.
+
+### On the Server (Production)
+
+The included `start.sh` script handles this for you.
+
+When you run `./start.sh`, it automatically does two things:
+1.  Runs `export SPRING_PROFILES_ACTIVE=prod`.
+2.  Reads your `.env` file to securely load all your production database credentials.
 
 ---
 
@@ -123,7 +196,7 @@ java -jar target/order-service-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
 
 ---
 
-## 📚 6. Using the API
+## 📚 Using the API
 
 ### Swagger UI
 Visit: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
@@ -139,7 +212,7 @@ Import `postman_collection.json` (included in project root).
 
 ---
 
-## 🌐 7. API Endpoints
+## 🌐 API Endpoints
 
 **Base Path:** `/api/v1`
 
@@ -238,6 +311,22 @@ GET
 
 DELETE
 <img width="1506" height="628" alt="Image" src="https://github.com/user-attachments/assets/268e8f22-a331-4918-81fa-8bb31c3a3572" />
+
+## Swagger documentation
+
+GET
+<img width="1429" height="796" alt="Image" src="https://github.com/user-attachments/assets/2de0b08d-87fb-4c50-b8ee-5422109358cc" />
+
+POST
+<img width="1134" height="826" alt="Image" src="https://github.com/user-attachments/assets/44e6b3ab-22c6-44fb-8096-f85b675a9589" />
+
+GET BY ID
+<img width="1278" height="779" alt="Image" src="https://github.com/user-attachments/assets/ef619b3d-c51d-4ed4-b179-8eb2375ecf6b" />
+
+DELETE
+<img width="1421" height="451" alt="image" src="https://github.com/user-attachments/assets/edf043a5-44ad-4372-be16-a0a56546233e" />
+
+---
 
 POSTMAN JSON in
 https://github.com/JaredTrOr/meli-ecommerce-orders-api/blob/master/MeliECommerce.postman_collection.json
